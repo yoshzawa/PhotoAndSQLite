@@ -3,20 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace photoAndSQLite
 {
-    public partial class MainPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class NavPage : NavigationPage
     {
-        public MainPage()
+        public NavPage()
         {
             InitializeComponent();
-        }
-
-        private void NavButton_Clicked(object sender, EventArgs e)
-        {
-
         }
     }
 }
