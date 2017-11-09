@@ -19,7 +19,7 @@ namespace photoAndSQLite
 
         private void MainPageButton_Clicked(object sender, EventArgs e)
         {
-            Application.Current.MainPage = MainPage;
+            Application.Current.MainPage = new MainPage();
         }
     }
 }
