@@ -10,7 +10,7 @@ using Xamarin.Forms.Xaml;
 namespace photoAndSQLite
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NavPage : NavigationPage
+    public partial class NavPage : ContentPage
     {
         public NavPage()
         {
