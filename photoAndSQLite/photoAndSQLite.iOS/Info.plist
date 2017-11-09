@@ -9,6 +9,7 @@
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
+		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
@@ -50,5 +51,11 @@
 	<string>LaunchScreen</string>
 	<key>MinimumOSVersion</key>
 	<string>10.3</string>
+  <key>NSCameraUsageDescription</key>
+  <string>This app needs access to the camera to take photos.</string>
+  <key>NSPhotoLibraryUsageDescription</key>
+  <string>This app needs access to photos.</string>
+  <key>NSMicrophoneUsageDescription</key>
+  <string>This app needs access to microphone.</string>
 </dict>
 </plist>
