@@ -1,19 +1,24 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="photoAndSQLite.NavPage" Title="TOPPAGE">
     <ContentPage.Content>
 
-        <StackLayout>
+            <ScrollView  Orientation="Vertical">
+                <StackLayout>
+                
             <Button Text="MainPageに戻る"
                 HorizontalOptions="Center" 
                    x:Name="MainPageButton"
                    Clicked="MainPageButton_Clicked"/>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                
+                    <Button Text="写真を撮影する" FontSize="Large" HorizontalOptions="Center" 
+                    x:Name="pictureButton1" BorderWidth="5" BorderColor="Aqua" />
+                
+                    <Image x:Name="image" />
 
         </StackLayout>
+            </ScrollView>
         
     </ContentPage.Content>
 </ContentPage>

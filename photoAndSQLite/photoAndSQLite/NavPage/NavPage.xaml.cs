@@ -23,7 +23,7 @@ namespace photoAndSQLite
             // ボタンが押された時の処理は、asyncメソッドの中で実行する必要があるので、
             // XAMLの中にclickedは書けないんじゃないかと思うけどどうなんだろ
 
-            PictureButton1.Clicked += takePicture;
+            pictureButton1.Clicked += takePicture;
 
             // 初期化した時のイメージを指定
             // 指定方法は http://ytabuchi.hatenablog.com/entry/2017/01/16/170000
