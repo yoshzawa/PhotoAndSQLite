@@ -79,6 +79,7 @@
     <DeviceSpecificBuild>false</DeviceSpecificBuild>
     <OptimizePNGs>true</OptimizePNGs>
     <MtouchNoSymbolStrip>false</MtouchNoSymbolStrip>
+    <MtouchFloat32>false</MtouchFloat32>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
     <DebugType>none</DebugType>

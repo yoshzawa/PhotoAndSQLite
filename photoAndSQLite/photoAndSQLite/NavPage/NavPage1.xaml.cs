@@ -10,18 +10,17 @@ using Xamarin.Forms.Xaml;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 
+using photoAndSQLite.NavPage;
+
 
 namespace photoAndSQLite
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NavPage : ContentPage
+    public partial class NavPage1 : ContentPage
     {
-        public NavPage()
+        public NavPage1()
         {
             InitializeComponent();
-
-            // ボタンが押された時の処理は、asyncメソッドの中で実行する必要があるので、
-            // XAMLの中にclickedは書けないんじゃないかと思うけどどうなんだろ
 
             pictureButton1.Clicked += takePicture;
 
@@ -71,6 +70,11 @@ namespace photoAndSQLite
             //or:
             //image.Source = ImageSource.FromFile(file.Path);
             //image.Dispose();
+
+            // pictureButton1.Text = "再度撮影する";
+
+            await Navigation.PushAsync(new NavPage.NavPage2(image.Source), true);
+
         }
     }
 }
