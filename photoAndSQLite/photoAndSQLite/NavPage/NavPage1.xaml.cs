@@ -74,7 +74,8 @@ namespace photoAndSQLite
 
             // pictureButton1.Text = "再度撮影する";
 
-            await Navigation.PushAsync(new NavPage.NavPage2(image.Source), true);
+            await Navigation.PushAsync(new NavPage2(file), true);
+            //await Navigation.PushAsync(new NavPage.NavPage2(image.Source), true);
             //await Navigation.PushAsync(new NavPage.NavPage2(file.Path), true);
 
         }

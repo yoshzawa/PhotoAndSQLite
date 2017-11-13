@@ -15,12 +15,16 @@ namespace photoAndSQLite.NavPage
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NavPage2 : ContentPage
     {
-        private ImageSource source;
 
         public NavPage2(ImageSource source)
         {
             InitializeComponent();
             image.Source = source;
+        }
+        public NavPage2(Plugin.Media.Abstractions.MediaFile file)
+        {
+            InitializeComponent();
+            image.Source = ImageSource.FromFile(file.Path);
         }
 
 
