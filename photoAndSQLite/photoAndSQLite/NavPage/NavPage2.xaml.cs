@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+using photoAndSQLite.NavPage;
+
+
 namespace photoAndSQLite.NavPage
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -17,8 +20,9 @@ namespace photoAndSQLite.NavPage
         public NavPage2(ImageSource source)
         {
             InitializeComponent();
-            this.source = source;
+            image.Source = source;
         }
+
 
         public NavPage2()
         {

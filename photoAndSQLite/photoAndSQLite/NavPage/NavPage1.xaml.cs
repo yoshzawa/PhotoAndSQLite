@@ -60,13 +60,14 @@ namespace photoAndSQLite
 
             await DisplayAlert("File Location", file.Path, "OK");
 
+/*
             image.Source = ImageSource.FromStream(() =>
             {
                 var stream = file.GetStream();
                 file.Dispose();
                 return stream;
             });
-
+*/
             //or:
             //image.Source = ImageSource.FromFile(file.Path);
             //image.Dispose();
@@ -74,6 +75,7 @@ namespace photoAndSQLite
             // pictureButton1.Text = "再度撮影する";
 
             await Navigation.PushAsync(new NavPage.NavPage2(image.Source), true);
+            //await Navigation.PushAsync(new NavPage.NavPage2(file.Path), true);
 
         }
     }
