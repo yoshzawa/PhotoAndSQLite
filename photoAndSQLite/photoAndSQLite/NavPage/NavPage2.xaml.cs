@@ -16,15 +16,12 @@ namespace photoAndSQLite.NavPage
     public partial class NavPage2 : ContentPage
     {
 
-        public NavPage2(ImageSource source)
+        public NavPage2(ImageSource source):this()
         {
-            InitializeComponent();
             image.Source = source;
         }
-        public NavPage2(Plugin.Media.Abstractions.MediaFile file)
+        public NavPage2(Plugin.Media.Abstractions.MediaFile file) : this(ImageSource.FromFile(file.Path))
         {
-            InitializeComponent();
-            image.Source = ImageSource.FromFile(file.Path);
         }
 
 
