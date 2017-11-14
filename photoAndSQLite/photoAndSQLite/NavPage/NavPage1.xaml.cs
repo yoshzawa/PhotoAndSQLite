@@ -24,10 +24,7 @@ namespace photoAndSQLite
 
             pictureButton1.Clicked += takePicture;
 
-            // 初期化した時のイメージを指定
-            // 指定方法は http://ytabuchi.hatenablog.com/entry/2017/01/16/170000
-
-            image.Source = ImageSource.FromResource("Lottery.image.Icon.png");
+            pictureButton2.Clicked += pickPicture;
 
         }
 
@@ -79,5 +76,35 @@ namespace photoAndSQLite
             //await Navigation.PushAsync(new NavPage.NavPage2(file.Path), true);
 
         }
+        async void pickPicture(object sender, EventArgs e)
+        {
+            // from https://github.com/jamesmontemagno/MediaPlugin
+
+            if (!CrossMedia.Current.IsPickPhotoSupported)
+            {
+                await DisplayAlert("Photos Not Supported", ":( Permission not granted to photos.", "OK");
+                return;
+            }
+            var file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+            {
+                PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium
+            });
+
+
+            if (file == null)
+                return;
+
+            /*
+            image.Source = ImageSource.FromStream(() =>
+            {
+                var stream = file.GetStream();
+                file.Dispose();
+                return stream;
+            });
+            */
+
+            await Navigation.PushAsync(new NavPage2(file), true);
+        }
+
     }
 }

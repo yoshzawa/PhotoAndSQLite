@@ -11,9 +11,11 @@
                    x:Name="MainPageButton"                   Clicked="MainPageButton_Clicked" />
                 
                     <Button Text="写真を撮影する" FontSize="Large" HorizontalOptions="Center" 
-                    x:Name="pictureButton1" BorderWidth="5" BorderColor="Aqua" />
-                
-                    <Image x:Name="image" />
+                    x:Name="pictureButton1" BorderWidth="2" BorderColor="Aqua" />
+
+                <Button Text="写真を選択する" FontSize="Large" HorizontalOptions="Center" 
+                    x:Name="pictureButton2" BorderWidth="2" BorderColor="Aqua" />
+
 
         </StackLayout>
             </ScrollView>
