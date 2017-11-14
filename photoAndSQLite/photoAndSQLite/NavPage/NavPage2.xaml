@@ -19,9 +19,10 @@
                             Clicked="backButton_Clicked"/>
                     <Button Grid.Column="1" Text="決定する"
           WidthRequest="100" HeightRequest="80" x:Name="nextButton" Clicked="nextButton_Clicked"/>
-                    <Image x:Name="image" />
 
                 </Grid>
+                <Image x:Name="image" HorizontalOptions="Center"  HeightRequest="50%"/>
+
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
