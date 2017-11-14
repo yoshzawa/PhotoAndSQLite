@@ -21,7 +21,7 @@
           WidthRequest="100" HeightRequest="80" x:Name="nextButton" Clicked="nextButton_Clicked"/>
 
                 </Grid>
-                <Image x:Name="image" HorizontalOptions="Center"  HeightRequest="50%"/>
+                <Image x:Name="image" HorizontalOptions="Center"  HeightRequest="300"/>
 
             </StackLayout>
         </ScrollView>
