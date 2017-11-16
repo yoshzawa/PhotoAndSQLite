@@ -6,7 +6,7 @@
     
     <ContentPage.Content>
         
-        <StackLayout>
+        <StackLayout VerticalOptions="CenterAndExpand">
             
             <Button Text="NavigationLayout"
                 HorizontalOptions="Center" 
