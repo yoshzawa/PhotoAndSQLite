@@ -5,6 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
+using photoAndSQLite.Database;
+using SQLite;
+
+
 namespace photoAndSQLite
 {
     public partial class MainPage : ContentPage
@@ -41,8 +45,12 @@ namespace photoAndSQLite
             try
             {
                 var db = new SQLiteAsyncConnection(path);
-                if (db.InsertAsync(data) != 0)
+
+                if (db.InsertAsync(data).Result != 0)
+                {
                     db.UpdateAsync(data);
+                }
+
                 return "Single data file inserted or updated";
             }
             catch (SQLiteException ex)
@@ -56,7 +64,7 @@ namespace photoAndSQLite
             {
                 var db = new SQLiteAsyncConnection(path);
                 // this counts all records in the database, it can be slow depending on the size of the database
-                var count = db.ExecuteScalar<int>("SELECT Count(*) FROM Person");
+                var count = db.ExecuteScalarAsync<int>("SELECT Count(*) FROM Person").Result;
 
                 // for a non-parameterless query
                 // var count = db.ExecuteScalar<int>("SELECT Count(*) FROM Person WHERE FirstName="Amy");
