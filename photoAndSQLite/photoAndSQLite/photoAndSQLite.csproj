@@ -42,8 +42,11 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NavPage\NavPage.xaml.cs">
-      <DependentUpon>NavPage.xaml</DependentUpon>
+    <Compile Include="NavPage\NavPage1.xaml.cs">
+      <DependentUpon>NavPage1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NavPage\NavPage2.xaml.cs">
+      <DependentUpon>NavPage2.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -92,7 +95,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="NavPage\NavPage.xaml">
+    <EmbeddedResource Include="NavPage\NavPage1.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="NavPage\NavPage2.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
