@@ -11,6 +11,8 @@ using Android.Views;
 using Android.Widget;
 
 using SQLite;
+using photoAndSQLite.Database;
+
 [assembly: Dependency(typeof(SQLService))]
 namespace photoAndSQLite.Droid
 {

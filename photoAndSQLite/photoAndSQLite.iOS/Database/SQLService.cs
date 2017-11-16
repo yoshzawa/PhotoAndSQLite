@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Text;
 
 using SQLite;
+using photoAndSQLite.Database;
 
 [assembly: Dependency(typeof(SQLService))]
 
 namespace photoAndSQLite.iOS.Database
 {
-    public class SQLService : photoAndSQLite.Database.ISQLService
+    public class SQLService : ISQLService
     {
         public SQLiteConnection GetConnection()
         {

@@ -12,7 +12,7 @@ using SQLite;
 
 namespace photoAndSQLite.Database
 {
-    interface ISQLService
+    public interface ISQLService
     {
         SQLiteConnection GetConnection();
 
