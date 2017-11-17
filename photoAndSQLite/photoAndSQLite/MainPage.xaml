@@ -12,6 +12,10 @@
                 HorizontalOptions="Center" 
                     x:Name="NavButton"
                     Clicked="NavButton_Clicked"/>
+            <ListView
+                x:Name="lView">
+                
+            </ListView>
             
         </StackLayout>
         

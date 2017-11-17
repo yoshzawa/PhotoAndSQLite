@@ -16,6 +16,19 @@ namespace photoAndSQLite
         public MainPage()
         {
             InitializeComponent();
+            String createMessage = createDatabase("database.db");
+            if(createMessage.Equals("Database created"))
+            {
+                Person person=new Person()
+                {
+                    FirstName="東北",
+                    LastName="電二朗",
+
+                };
+                insertUpdateData(person,"database.db");
+            }
+
+
         }
 
         private void NavButton_Clicked(object sender, EventArgs e)

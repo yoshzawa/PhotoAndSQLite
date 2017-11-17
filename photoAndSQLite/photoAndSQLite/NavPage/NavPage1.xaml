@@ -5,20 +5,31 @@
     <ContentPage.Content>
 
             <ScrollView  Orientation="Vertical">
-                <StackLayout>
-                
-            <Button Text="MainPageに戻る"                HorizontalOptions="Center" 
-                   x:Name="MainPageButton"                   Clicked="MainPageButton_Clicked" />
-                
-                    <Button Text="写真を撮影する" FontSize="Large" HorizontalOptions="Center" 
-                    x:Name="pictureButton1" BorderWidth="2" BorderColor="Aqua" />
+            <StackLayout>
 
-                <Button Text="写真を選択する" FontSize="Large" HorizontalOptions="Center" 
-                    x:Name="pictureButton2" BorderWidth="2" BorderColor="Aqua" />
+                <Button Text="MainPageに戻る"                
+                        HorizontalOptions="Center" 
+                        x:Name="MainPageButton"                   
+                        Clicked="MainPageButton_Clicked" />
+
+                <Button Text="写真を撮影する" 
+                        FontSize="Large" 
+                        HorizontalOptions="Center" 
+                    
+                        x:Name="pictureButton1" 
+                        BorderWidth="2" 
+                        BorderColor="Aqua" />
+
+                <Button Text="写真を選択する" 
+                        FontSize="Large" 
+                        HorizontalOptions="Center" 
+                        x:Name="pictureButton2" 
+                        BorderWidth="2" 
+                        BorderColor="Aqua" />
 
 
-        </StackLayout>
-            </ScrollView>
+            </StackLayout>
+        </ScrollView>
         
     </ContentPage.Content>
 </ContentPage>
