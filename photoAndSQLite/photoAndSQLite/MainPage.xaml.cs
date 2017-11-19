@@ -16,6 +16,8 @@ namespace photoAndSQLite
         public MainPage()
         {
             InitializeComponent();
+
+
         }
 
         private void NavButton_Clicked(object sender, EventArgs e)
@@ -41,6 +43,8 @@ namespace photoAndSQLite
             }
         }
 
+
+        public int ResumeAtTodoId { get; set; }
 
     }
 }

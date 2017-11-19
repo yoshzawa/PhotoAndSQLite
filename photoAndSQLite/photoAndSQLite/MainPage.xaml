@@ -3,7 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:photoAndSQLite"
              x:Class="photoAndSQLite.MainPage">
-    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+" >
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="Android" Value="plus.png" />
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         
         <StackLayout VerticalOptions="CenterAndExpand">
