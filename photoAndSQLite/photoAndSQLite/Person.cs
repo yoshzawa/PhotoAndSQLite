@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using SQLite;
 
-namespace photoAndSQLite.Database
+namespace photoAndSQLite
 {
     public class Person
     {
