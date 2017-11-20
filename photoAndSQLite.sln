@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "photoAndSQLite", "photoAndS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "photoAndSQLite.iOS", "photoAndSQLite\photoAndSQLite.iOS\photoAndSQLite.iOS.csproj", "{EC10153D-020E-442A-A73B-1D741765F510}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E0E4AFD3-C547-4346-8071-52F445C3B387}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU
