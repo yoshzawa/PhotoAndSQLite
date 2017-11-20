@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 
 using photoAndSQLite;
-using SQLite;
+
 
 
 namespace photoAndSQLite
@@ -28,23 +28,6 @@ namespace photoAndSQLite
                 BarTextColor = Color.White
             };
         }
-
-        static TodoItemDatabase database;
-
-        public static TodoItemDatabase Database
-        {
-            get
-            {
-                if (database == null)
-                {
-                    database = new TodoItemDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("TodoSQLite.db3"));
-                }
-                return database;
-            }
-        }
-
-
-        public int ResumeAtTodoId { get; set; }
 
     }
 }
