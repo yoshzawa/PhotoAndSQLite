@@ -8,6 +8,8 @@ using Xamarin.Forms;
 using photoAndSQLite;
 using Realms;
 using System.Collections.ObjectModel;
+using System.IO;
+using Plugin.Media;
 
 
 
@@ -16,7 +18,8 @@ namespace photoAndSQLite
 {
     public partial class MainPage : ContentPage
     {
-        ObservableCollection<string> items = new ObservableCollection<string>();
+// ObservableCollection<string> items = new ObservableCollection<string>();
+        ObservableCollection<ImageSource> items = new ObservableCollection<ImageSource>();
 
         public MainPage()
         {
@@ -25,7 +28,10 @@ namespace photoAndSQLite
             var allItems = realm.All<Item>().OrderByDescending((arg) => arg.TimeString);
             foreach (var i in allItems)
             {
-                items.Add(i.TimeString);
+                // items.Add(i.TimeString);
+                ImageSource source = ImageSource.FromStream(() => new MemoryStream(i.imageBytes));
+
+                items.Add(source);
             }
             listView.ItemsSource = items;
         }

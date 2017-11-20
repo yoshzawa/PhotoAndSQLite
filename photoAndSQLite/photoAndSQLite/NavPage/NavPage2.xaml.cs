@@ -35,16 +35,8 @@ namespace photoAndSQLite.NavPage
 
         private void backButton_Clicked(object sender, EventArgs e)
         {
-            var time = DateTime.UtcNow.ToString("HH:mm:ss");
 
-            // RealmにItemオブジェクトを追加する
-            var realm = Realm.GetInstance();
-            realm.Write(() =>
-            {
-
-                byte[] iBytes = GetByteArrayFromStream(sourceFile.GetStream());
-                realm.Add(new Item { TimeString = time ,imageBytes= iBytes });
-            });
+            Navigation.PopAsync(true);
 
         }
 
@@ -59,7 +51,19 @@ namespace photoAndSQLite.NavPage
 
         private void nextButton_Clicked(object sender, EventArgs e)
         {
-            Navigation.PopToRootAsync(true);
+            var time = DateTime.UtcNow.ToString("HH:mm:ss");
+
+            // RealmにItemオブジェクトを追加する
+            var realm = Realm.GetInstance();
+            realm.Write(() =>
+            {
+
+                byte[] iBytes = GetByteArrayFromStream(sourceFile.GetStream());
+                realm.Add(new Item { TimeString = time, imageBytes = iBytes });
+            });
+            // Navigation.PopToRootAsync(true);
+            Application.Current.MainPage = new MainPage();
+
         }
     }
 }
