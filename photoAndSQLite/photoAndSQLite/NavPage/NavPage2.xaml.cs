@@ -8,6 +8,10 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 using photoAndSQLite.NavPage;
+using Realms;
+using System.IO;
+using Plugin.Media.Abstractions;
+
 
 
 namespace photoAndSQLite.NavPage
@@ -15,13 +19,12 @@ namespace photoAndSQLite.NavPage
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NavPage2 : ContentPage
     {
+        MediaFile sourceFile = null;
 
-        public NavPage2(ImageSource source):this()
+        public NavPage2(MediaFile file) : this()
         {
-            image.Source = source;
-        }
-        public NavPage2(Plugin.Media.Abstractions.MediaFile file) : this(ImageSource.FromFile(file.Path))
-        {
+            image.Source = ImageSource.FromFile(file.Path);
+                sourceFile = file;
         }
 
 
@@ -32,7 +35,26 @@ namespace photoAndSQLite.NavPage
 
         private void backButton_Clicked(object sender, EventArgs e)
         {
-            Navigation.PopAsync(true);
+            var time = DateTime.UtcNow.ToString("HH:mm:ss");
+
+            // RealmにItemオブジェクトを追加する
+            var realm = Realm.GetInstance();
+            realm.Write(() =>
+            {
+
+                byte[] iBytes = GetByteArrayFromStream(sourceFile.GetStream());
+                realm.Add(new Item { TimeString = time ,imageBytes= iBytes });
+            });
+
+        }
+
+        public static byte[] GetByteArrayFromStream(Stream sm)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                sm.CopyTo(ms);
+                return ms.ToArray();
+            }
         }
 
         private void nextButton_Clicked(object sender, EventArgs e)

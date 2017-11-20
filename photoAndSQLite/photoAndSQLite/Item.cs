@@ -10,5 +10,6 @@ namespace photoAndSQLite
     public class Item : RealmObject
     {
         public string TimeString { get; set; }
+        public byte[] imageBytes { get; set; }
     }
 }
