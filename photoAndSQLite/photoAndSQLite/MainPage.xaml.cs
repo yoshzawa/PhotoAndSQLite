@@ -18,12 +18,12 @@ namespace photoAndSQLite
 {
     public partial class MainPage : ContentPage
     {
-// ObservableCollection<string> items = new ObservableCollection<string>();
-        ObservableCollection<ImageSource> items = new ObservableCollection<ImageSource>();
+        ObservableCollection<Data> items = new ObservableCollection<Data>();
 
         public MainPage()
         {
             InitializeComponent();
+
             var realm = Realm.GetInstance();
             var allItems = realm.All<Item>().OrderByDescending((arg) => arg.TimeString);
             foreach (var i in allItems)
@@ -31,10 +31,15 @@ namespace photoAndSQLite
                 // items.Add(i.TimeString);
                 ImageSource source = ImageSource.FromStream(() => new MemoryStream(i.imageBytes));
 
-                items.Add(source);
-                testImage.Source = source;
+                items.Add(new Data { Time = i.TimeString , Icon = source  });
             }
+            var cell = new DataTemplate(typeof(ImageCell));        // <-3
+
+            cell.SetBinding(ImageCell.TextProperty, "Time");
+            cell.SetBinding(ImageCell.ImageSourceProperty, "Icon");
+
             listView.ItemsSource = items;
+            listView.ItemTemplate = cell;
         }
 
         private void NavButton_Clicked(object sender, EventArgs e)
@@ -57,7 +62,15 @@ namespace photoAndSQLite
             });
 
             // ListViewの先頭にも時刻を表示させる
-            items.Insert(0, time);
+            // items.Insert(0, time);
+        }
+
+
+
+        class Data
+        { 
+            public String Time { get; set; }
+            public ImageSource Icon { get; set; }
         }
     }
 }
