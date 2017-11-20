@@ -32,6 +32,7 @@ namespace photoAndSQLite
                 ImageSource source = ImageSource.FromStream(() => new MemoryStream(i.imageBytes));
 
                 items.Add(source);
+                testImage.Source = source;
             }
             listView.ItemsSource = items;
         }

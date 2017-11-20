@@ -28,8 +28,9 @@
                 <ContentView HeightRequest="1" BackgroundColor="Black" />
 
                 <ListView x:Name="listView" />
+            <Image x:Name="testImage" />
 
-            </StackLayout>
+        </StackLayout>
     </ContentPage.Content>
     
 </ContentPage>
