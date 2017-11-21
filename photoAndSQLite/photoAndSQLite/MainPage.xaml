@@ -16,13 +16,24 @@
 
         <StackLayout VerticalOptions="CenterAndExpand"  Orientation="Vertical">
 
-                <Button Text="NavigationLayout"
+            <Button Text="NavigationLayout"
                 HorizontalOptions="Center" 
                     x:Name="NavButton"
                     Clicked="NavButton_Clicked"/>
 
 
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Welcome to Xamarin Forms!" />
+                <Button Text="Add" Clicked="AddAction" />
+            </StackLayout>
+            
+            <ContentView HeightRequest="1" BackgroundColor="Black" />
+
+            <ListView x:Name="listView" />
+
+
         </StackLayout>
+
     </ContentPage.Content>
     
 </ContentPage>
