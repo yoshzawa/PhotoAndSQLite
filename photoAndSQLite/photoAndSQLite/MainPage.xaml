@@ -21,6 +21,7 @@
                     x:Name="NavButton"
                     Clicked="NavButton_Clicked"/>
 
+
             <StackLayout Orientation="Horizontal">
                 <Label Text="Welcome to Xamarin Forms!" />
                 <Button Text="Add" Clicked="AddAction" />
