@@ -21,14 +21,6 @@
                     x:Name="NavButton"
                     Clicked="NavButton_Clicked"/>
 
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Welcome to Xamarin Forms!" HorizontalOptions="Center"/>
-                <Button Text="Add" Clicked="AddAction"  HorizontalOptions="Center"/>
-                </StackLayout>
-                <ContentView HeightRequest="1" BackgroundColor="Black" />
-
-                <ListView x:Name="listView" />
-            <Image x:Name="testImage" />
 
         </StackLayout>
     </ContentPage.Content>
