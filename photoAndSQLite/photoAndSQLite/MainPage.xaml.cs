@@ -11,7 +11,9 @@ using System.Collections.ObjectModel;
 using System.IO;
 using Plugin.Media;
 
-
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 
 
 namespace photoAndSQLite
@@ -22,24 +24,32 @@ namespace photoAndSQLite
 
         public MainPage()
         {
+            AppCenter.Start("ios=4767b6a1-63b4-4075-bac1-b760a033ab33;" + "uwp={Your UWP App secret here};" +
+                   "android={Your Android App secret here}",
+                   typeof(Analytics), typeof(Crashes));
+
             InitializeComponent();
 
-            var realm = Realm.GetInstance();
-            var allItems = realm.All<Item>().OrderByDescending((arg) => arg.TimeString);
-            foreach (var i in allItems)
-            {
-                // items.Add(i.TimeString);
+
+//            ContentPage page = new ContentPage();
+            StackLayout layout = new StackLayout();
+            layout.Children.Add(new Label { Text = "", FontSize=40});
+            Button button = new Button { Text = "データを追加する", HorizontalOptions = LayoutOptions.Center};
+            button.Clicked += NavButton_Clicked;
+            layout.Children.Add(button);
+
+//            var realm = Realm.GetInstance();
+            /*
+                        var allItems = realm.All<Item>().OrderByDescending((arg) => arg.TimeString);
+                        foreach (var i in allItems)
+                        {
                 ImageSource source = ImageSource.FromStream(() => new MemoryStream(i.imageBytes));
+                layout.Children.Add(new Label { Text = i.TimeString });
+                layout.Children.Add(new Image { Source=  source});
+                        }
+*/
+            Content = layout;
 
-                items.Add(new Data { Time = i.TimeString , Icon = source  });
-            }
-            var cell = new DataTemplate(typeof(ImageCell));        // <-3
-
-            cell.SetBinding(ImageCell.TextProperty, "Time");
-            cell.SetBinding(ImageCell.ImageSourceProperty, "Icon");
-
-            listView.ItemsSource = items;
-            listView.ItemTemplate = cell;
         }
 
         private void NavButton_Clicked(object sender, EventArgs e)

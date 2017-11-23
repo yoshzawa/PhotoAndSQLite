@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:photoAndSQLite"
@@ -22,12 +22,13 @@
                     Clicked="NavButton_Clicked"/>
 
 
-            <StackLayout Orientation="Horizontal">
+            <StackLayout Orientation="Horizontal" x:Name="sLayout">
                 <Label Text="Welcome to Xamarin Forms!" />
                 <Button Text="Add" Clicked="AddAction" />
             </StackLayout>
             
-            <ContentView HeightRequest="1" BackgroundColor="Black" />
+            <ContentView HeightRequest="1" BackgroundColor="Black" 
+            x:Name="cView"/>
 
             <ListView x:Name="listView" />
 

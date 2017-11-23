@@ -88,6 +88,15 @@
     <Reference Include="Xamarin.Forms.Xaml, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.Forms.2.5.0.91635\lib\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AppCenter">
+      <HintPath>..\..\packages\Microsoft.AppCenter.1.0.1\lib\portable-net45+win8+wpa81+wp8\Microsoft.AppCenter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AppCenter.Analytics">
+      <HintPath>..\..\packages\Microsoft.AppCenter.Analytics.1.0.1\lib\portable-net45+win8+wpa81+wp8\Microsoft.AppCenter.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AppCenter.Crashes">
+      <HintPath>..\..\packages\Microsoft.AppCenter.Crashes.1.0.1\lib\portable-net45+win8+wpa81+wp8\Microsoft.AppCenter.Crashes.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -120,12 +129,11 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\..\packages\Xamarin.Forms.2.5.0.91635\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Forms.2.5.0.91635\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets'))" />
     <Error Condition="!Exists('..\..\packages\NETStandard.Library.2.0.1\build\NETStandard.Library.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\NETStandard.Library.2.0.1\build\NETStandard.Library.targets'))" />
-    <Error Condition="!Exists('..\..\packages\Fody.2.2.0\build\portable-net+sl+win+wpa+wp\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Fody.2.2.0\build\portable-net+sl+win+wpa+wp\Fody.targets'))" />
     <Error Condition="!Exists('..\..\packages\Realm.Database.2.1.0\build\Realm.Database.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Realm.Database.2.1.0\build\Realm.Database.targets'))" />
     <Error Condition="!Exists('..\..\packages\Realm.2.1.0\build\Realm.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Realm.2.1.0\build\Realm.targets'))" />
   </Target>
   <Import Project="..\..\packages\NETStandard.Library.2.0.1\build\NETStandard.Library.targets" Condition="Exists('..\..\packages\NETStandard.Library.2.0.1\build\NETStandard.Library.targets')" />
-  <Import Project="..\..\packages\Fody.2.2.0\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\..\packages\Fody.2.2.0\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
   <Import Project="..\..\packages\Realm.Database.2.1.0\build\Realm.Database.targets" Condition="Exists('..\..\packages\Realm.Database.2.1.0\build\Realm.Database.targets')" />
   <Import Project="..\..\packages\Realm.2.1.0\build\Realm.targets" Condition="Exists('..\..\packages\Realm.2.1.0\build\Realm.targets')" />
+  <Import Project="..\..\packages\Fody.2.2.1.0\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\..\packages\Fody.2.2.1.0\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
 </Project>
