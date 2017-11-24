@@ -59,7 +59,7 @@ namespace photoAndSQLite.NavPage
             {
 
                 byte[] iBytes = GetByteArrayFromStream(sourceFile.GetStream());
-                realm.Add(new Item { TimeString = time, imageBytes = iBytes });
+                realm.Add(new Item { TimeString = time, ImageBytes = iBytes });
             });
             // Navigation.PopToRootAsync(true);
             Application.Current.MainPage = new MainPage();

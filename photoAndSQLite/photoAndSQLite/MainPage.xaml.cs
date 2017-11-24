@@ -5,11 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-using photoAndSQLite;
 using Realms;
 using System.Collections.ObjectModel;
 using System.IO;
-using Plugin.Media;
 
 
 
@@ -19,22 +17,29 @@ namespace photoAndSQLite
     public partial class MainPage : ContentPage
     {
 // ObservableCollection<string> items = new ObservableCollection<string>();
-        ObservableCollection<ImageSource> items = new ObservableCollection<ImageSource>();
+        ObservableCollection<Item> items = new ObservableCollection<Item>();
 
         public MainPage()
         {
             InitializeComponent();
+
+            StackLayout layout = new StackLayout();
+
+            Button b = new Button() { Text = "新規データを追加", HorizontalOptions = LayoutOptions.Center };
+            b.Clicked += NavButton_Clicked;
+
             var realm = Realm.GetInstance();
             var allItems = realm.All<Item>().OrderByDescending((arg) => arg.TimeString);
             foreach (var i in allItems)
             {
                 // items.Add(i.TimeString);
-                ImageSource source = ImageSource.FromStream(() => new MemoryStream(i.imageBytes));
+                ImageSource source = ImageSource.FromStream(() => new MemoryStream(i.ImageBytes));
 
-                items.Add(source);
-                testImage.Source = source;
+                //layout.Children.Add(new Image { Source = source });
+                layout.Children.Add(new Label { Text = i.TimeString });
+
             }
-            listView.ItemsSource = items;
+            Content = layout;
         }
 
         private void NavButton_Clicked(object sender, EventArgs e)
