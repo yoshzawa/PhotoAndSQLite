@@ -27,7 +27,7 @@ namespace photoAndSQLite
 
             Button b = new Button() { Text = "新規データを追加", HorizontalOptions = LayoutOptions.Center };
             b.Clicked += NavButton_Clicked;
-
+layout.Children.add(b);
             var realm = Realm.GetInstance();
             var allItems = realm.All<Item>().OrderByDescending((arg) => arg.TimeString);
             foreach (var i in allItems)
