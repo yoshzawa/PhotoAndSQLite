@@ -62,7 +62,7 @@ namespace photoAndSQLite
             });
 
             // ListViewの先頭にも時刻を表示させる
-            items.Insert(0, time);
+            //items.Insert(0, time);
         }
     }
 }
