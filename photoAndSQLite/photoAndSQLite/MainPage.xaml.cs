@@ -32,7 +32,7 @@ namespace photoAndSQLite
                 // items.Add(i.TimeString);
                 ImageSource source = ImageSource.FromStream(() => new MemoryStream(i.ImageBytes));
 
-                //layout.Children.Add(new Image { Source = source });
+                layout.Children.Add(new Image { Source = source });
                 layout.Children.Add(new Label { Text = i.TimeString });
 
             }
