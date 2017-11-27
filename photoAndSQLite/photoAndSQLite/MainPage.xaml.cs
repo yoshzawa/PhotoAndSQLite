@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 using Realms;
@@ -27,7 +24,7 @@ namespace photoAndSQLite
 
             Button b = new Button() { Text = "新規データを追加", HorizontalOptions = LayoutOptions.Center };
             b.Clicked += NavButton_Clicked;
-layout.Children.add(b);
+            layout.Children.Add(b);
             var realm = Realm.GetInstance();
             var allItems = realm.All<Item>().OrderByDescending((arg) => arg.TimeString);
             foreach (var i in allItems)
@@ -62,7 +59,7 @@ layout.Children.add(b);
             });
 
             // ListViewの先頭にも時刻を表示させる
-            items.Insert(0, time);
+            //items.Insert(0, time);
         }
     }
 }
