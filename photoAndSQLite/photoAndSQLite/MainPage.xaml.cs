@@ -1,21 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-
-using photoAndSQLite;
-using Realms;
-using System.Collections.ObjectModel;
+﻿using Realms;
+using System;
 using System.IO;
-using Plugin.Media;
-
-using Microsoft.AppCenter;
-using Microsoft.AppCenter.Analytics;
-using Microsoft.AppCenter.Crashes;
-using Plugin.Media.Abstractions;
-
+using System.Linq;
+using Xamarin.Forms;
 
 namespace photoAndSQLite
 {
@@ -31,6 +18,11 @@ namespace photoAndSQLite
                    typeof(Analytics), typeof(Crashes));
 
             InitializeComponent();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
             var realm = Realm.GetInstance();
             var allItems = realm.All<Item>().OrderByDescending((arg) => arg.TimeString);
             /*
@@ -92,9 +84,6 @@ namespace photoAndSQLite
                 {
                     WidthRequest = 300
                 };
-                ImageSource iSrc = ImageSource.FromStream(() => new MemoryStream(i.imageBytes.ToArray()));
-                imagePics2.Source = iSrc;
-                layout.Children.Add(imagePics2);
             }
 
             Content = layout;
