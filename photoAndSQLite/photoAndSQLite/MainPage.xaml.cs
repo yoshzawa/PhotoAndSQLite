@@ -30,9 +30,9 @@ namespace photoAndSQLite
                    typeof(Analytics), typeof(Crashes));
 
             InitializeComponent();
-            /*
                         var realm = Realm.GetInstance();
                         var allItems = realm.All<Item>().OrderByDescending((arg) => arg.TimeString);
+            /*
                         foreach (var i in allItems)
                         {
                             // items.Add(i.TimeString);
@@ -48,25 +48,18 @@ namespace photoAndSQLite
                         listView.ItemsSource = items;
                         listView.ItemTemplate = cell;
             */
-            var realm = Realm.GetInstance();
-            var allItems = realm.All<Item>().OrderByDescending((arg) => arg.TimeString);
-
             var layout = new StackLayout()
             {
                 HorizontalOptions = LayoutOptions.Center
             };
 
-            /*
-             *             <Button Text="NavigationLayout"
-                HorizontalOptions="Center" 
-                    x:Name="NavButton"
-                    Clicked="NavButton_Clicked"/>
-             * */
+
             Button NavButton = new Button()
             {
                 Text = "NavigationLayout",
                 HorizontalOptions = LayoutOptions.Center
             };
+
             NavButton.Clicked += NavButton_Clicked;
             layout.Children.Add(NavButton);
 
@@ -77,6 +70,16 @@ namespace photoAndSQLite
                     Text = i.TimeString
                 };
                 layout.Children.Add(labelTime);
+
+                ImageSource source = ImageSource.FromStream(() => new MemoryStream(i.imageBytes));
+
+                Image imagePics = new Image
+                {
+                    Source = source
+                };
+                layout.Children.Add(imagePics);
+
+
 
             }
             Content = layout;
