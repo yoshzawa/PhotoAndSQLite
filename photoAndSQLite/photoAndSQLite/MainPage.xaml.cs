@@ -68,6 +68,7 @@ namespace photoAndSQLite
                 HorizontalOptions = LayoutOptions.Center
             };
             NavButton.Clicked += NavButton_Clicked;
+            layout.Children.Add(NavButton);
 
             foreach (var i in allItems)
             {
