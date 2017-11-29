@@ -30,23 +30,56 @@ namespace photoAndSQLite
                    typeof(Analytics), typeof(Crashes));
 
             InitializeComponent();
+            /*
+                        var realm = Realm.GetInstance();
+                        var allItems = realm.All<Item>().OrderByDescending((arg) => arg.TimeString);
+                        foreach (var i in allItems)
+                        {
+                            // items.Add(i.TimeString);
+                            ImageSource source = ImageSource.FromStream(() => new MemoryStream(i.imageBytes));
 
+                            items.Add(new Data { Time = i.TimeString , Icon = source  });
+                        }
+                        var cell = new DataTemplate(typeof(ImageCell));        // <-3
+
+                        cell.SetBinding(ImageCell.TextProperty, "Time");
+                        cell.SetBinding(ImageCell.ImageSourceProperty, "Icon");
+
+                        listView.ItemsSource = items;
+                        listView.ItemTemplate = cell;
+            */
             var realm = Realm.GetInstance();
             var allItems = realm.All<Item>().OrderByDescending((arg) => arg.TimeString);
+
+            var layout = new StackLayout()
+            {
+                HorizontalOptions = LayoutOptions.Center
+            };
+
+            /*
+             *             <Button Text="NavigationLayout"
+                HorizontalOptions="Center" 
+                    x:Name="NavButton"
+                    Clicked="NavButton_Clicked"/>
+             * */
+            Button NavButton = new Button()
+            {
+                Text = "NavigationLayout",
+                HorizontalOptions = LayoutOptions.Center
+            };
+            NavButton.Clicked += NavButton_Clicked;
+
             foreach (var i in allItems)
             {
-                // items.Add(i.TimeString);
-                ImageSource source = ImageSource.FromStream(() => new MemoryStream(i.imageBytes));
+                Label labelTime = new Label
+                {
+                    Text = i.TimeString
+                };
+                layout.Children.Add(labelTime);
 
-                items.Add(new Data { Time = i.TimeString , Icon = source  });
             }
-            var cell = new DataTemplate(typeof(ImageCell));        // <-3
+            Content = layout;
 
-            cell.SetBinding(ImageCell.TextProperty, "Time");
-            cell.SetBinding(ImageCell.ImageSourceProperty, "Icon");
-
-            listView.ItemsSource = items;
-            listView.ItemTemplate = cell;
         }
 
         private void NavButton_Clicked(object sender, EventArgs e)
@@ -57,30 +90,30 @@ namespace photoAndSQLite
                 BarTextColor = Color.White
             };
         }
-/*
-        void AddAction(object sender, System.EventArgs e)
-        {
-            var time = DateTime.UtcNow.ToString("HH:mm:ss");
+        /*
+                void AddAction(object sender, System.EventArgs e)
+                {
+                    var time = DateTime.UtcNow.ToString("HH:mm:ss");
 
-            // RealmにItemオブジェクトを追加する
-            var realm = Realm.GetInstance();
-            realm.Write(() =>
-            {
-                realm.Add(new Item { TimeString = time });
-            });
+                    // RealmにItemオブジェクトを追加する
+                    var realm = Realm.GetInstance();
+                    realm.Write(() =>
+                    {
+                        realm.Add(new Item { TimeString = time });
+                    });
 
-            // ListViewの先頭にも時刻を表示させる
-            // items.Insert(0, time);
-        }
-*/
+                    // ListViewの先頭にも時刻を表示させる
+                    // items.Insert(0, time);
+                }
+        */
 
-/*
-        class Data
-        { 
-            public String Time { get; set; }
-            public ImageSource Icon { get; set; }
-        }
-*/
+        /*
+                class Data
+                { 
+                    public String Time { get; set; }
+                    public ImageSource Icon { get; set; }
+                }
+        */
     }
 }
 
