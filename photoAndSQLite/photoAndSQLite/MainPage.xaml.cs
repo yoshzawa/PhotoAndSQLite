@@ -92,10 +92,9 @@ namespace photoAndSQLite
                 {
                     WidthRequest = 300
                 };
-                ImageSource iSrc = ImageSource.FromStream(() => new MemoryStream(i.imageBytes));
+                ImageSource iSrc = ImageSource.FromStream(() => new MemoryStream(i.imageBytes.ToArray()));
                 imagePics2.Source = iSrc;
                 layout.Children.Add(imagePics2);
-
             }
 
             Content = layout;
