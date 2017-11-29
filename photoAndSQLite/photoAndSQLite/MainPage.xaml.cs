@@ -14,6 +14,7 @@ using Plugin.Media;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+using Plugin.Media.Abstractions;
 
 
 namespace photoAndSQLite
@@ -30,8 +31,8 @@ namespace photoAndSQLite
                    typeof(Analytics), typeof(Crashes));
 
             InitializeComponent();
-                        var realm = Realm.GetInstance();
-                        var allItems = realm.All<Item>().OrderByDescending((arg) => arg.TimeString);
+            var realm = Realm.GetInstance();
+            var allItems = realm.All<Item>().OrderByDescending((arg) => arg.TimeString);
             /*
                         foreach (var i in allItems)
                         {
@@ -73,19 +74,30 @@ namespace photoAndSQLite
 
                 ImageSource source = ImageSource.FromStream(() => new MemoryStream(i.imageBytes));
 
+                Image imagePics = new Image
+                {
+                    Source = source,
+                    WidthRequest = 300
+                };
+                layout.Children.Add(imagePics);
+
+
                 Label labelImageLength = new Label
                 {
                     Text = i.imageBytes.Length + " bytes"
                 };
                 layout.Children.Add(labelImageLength);
 
-                Image imagePics = new Image
+                Image imagePics2 = new Image
                 {
-                    Source = source
+                    WidthRequest = 300
                 };
-                layout.Children.Add(imagePics);
+                ImageSource iSrc = ImageSource.FromStream(() => new MemoryStream(i.imageBytes));
+                imagePics2.Source = iSrc;
+                layout.Children.Add(imagePics2);
 
             }
+
             Content = layout;
 
         }
