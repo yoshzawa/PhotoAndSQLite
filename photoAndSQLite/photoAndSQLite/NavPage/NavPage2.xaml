@@ -18,7 +18,7 @@
             <StackLayout>
                 <Label Text="この写真を使用します"
                 HorizontalOptions="CenterAndExpand" />
-                <Grid>
+                <Grid HorizontalOptions="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
