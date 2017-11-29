@@ -16,23 +16,35 @@
                                      VerticalOptions="CenterAndExpand"
 >
             <StackLayout>
+                <Image x:Name="image" 
+                       HorizontalOptions="Center"  
+                       HeightRequest="300"/>
+
                 <Label Text="この写真を使用します"
                 HorizontalOptions="CenterAndExpand" />
+                
                 <Grid HorizontalOptions="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Text="取り直す"
-          WidthRequest="100" HeightRequest="80" x:Name="backButton"
+                    
+                    <Button Grid.Column="0" 
+                            Text="取り直す"
+                            WidthRequest="100" 
+                            HeightRequest="80" 
+                            x:Name="backButton"
                             Clicked="backButton_Clicked"/>
-                    <Button Grid.Column="1" Text="決定する"
-          WidthRequest="100" HeightRequest="80" x:Name="nextButton" Clicked="nextButton_Clicked"/>
-
+                    <Button Grid.Column="1" 
+                            Text="決定する"
+                            WidthRequest="100" 
+                            HeightRequest="80" 
+                            x:Name="nextButton" 
+                            Clicked="nextButton_Clicked"/>
                 </Grid>
-                <Image x:Name="image" HorizontalOptions="Center"  HeightRequest="300"/>
-
+                
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>
+    
