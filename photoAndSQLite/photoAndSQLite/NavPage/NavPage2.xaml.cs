@@ -41,6 +41,20 @@ namespace photoAndSQLite.NavPage
                 return ms.ToArray();
             }
         }
+        public byte[] GetImageStreamAsBytes(Stream input)
+        {
+            var buffer = new byte[16 * 1024];
+            using (MemoryStream ms = new MemoryStream())
+            {
+                int read;
+                while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
+                {
+                    ms.Write(buffer, 0, read);
+                }
+                return ms.ToArray();
+            }
+        }
+
 
         private void nextButton_Clicked(object sender, EventArgs e)
         {
@@ -51,7 +65,8 @@ namespace photoAndSQLite.NavPage
             realm.Write(() =>
             {
 
-                byte[] iBytes = GetByteArrayFromStream(sourceFile.GetStream());
+                //byte[] iBytes = GetByteArrayFromStream(sourceFile.GetStream());
+                byte[] iBytes = GetImageStreamAsBytes(sourceFile.GetStream());
                 realm.Add(new Item { TimeString = time, imageBytes = iBytes });
                 DisplayAlert("NavPage2", "length" + iBytes.Length, "OK");
             });
