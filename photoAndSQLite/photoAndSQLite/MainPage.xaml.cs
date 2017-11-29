@@ -30,42 +30,23 @@ namespace photoAndSQLite
                    typeof(Analytics), typeof(Crashes));
 
             InitializeComponent();
-            /*
-                        var realm = Realm.GetInstance();
-                        var allItems = realm.All<Item>().OrderByDescending((arg) => arg.TimeString);
-                        foreach (var i in allItems)
-                        {
-                            // items.Add(i.TimeString);
-                            ImageSource source = ImageSource.FromStream(() => new MemoryStream(i.imageBytes));
 
-                            items.Add(new Data { Time = i.TimeString , Icon = source  });
-                        }
-                        var cell = new DataTemplate(typeof(ImageCell));        // <-3
-
-                        cell.SetBinding(ImageCell.TextProperty, "Time");
-                        cell.SetBinding(ImageCell.ImageSourceProperty, "Icon");
-
-                        listView.ItemsSource = items;
-                        listView.ItemTemplate = cell;
-            */
             var realm = Realm.GetInstance();
             var allItems = realm.All<Item>().OrderByDescending((arg) => arg.TimeString);
-
-            var layout = new StackLayout()
-            {
-                HorizontalOptions = LayoutOptions.Center
-            };
             foreach (var i in allItems)
             {
-                Label labelTime = new Label
-                {
-                    Text = i.TimeString
-                };
-                layout.Children.Add(labelTime);
+                // items.Add(i.TimeString);
+                ImageSource source = ImageSource.FromStream(() => new MemoryStream(i.imageBytes));
 
+                items.Add(new Data { Time = i.TimeString , Icon = source  });
             }
-            Content = layout;
+            var cell = new DataTemplate(typeof(ImageCell));        // <-3
 
+            cell.SetBinding(ImageCell.TextProperty, "Time");
+            cell.SetBinding(ImageCell.ImageSourceProperty, "Icon");
+
+            listView.ItemsSource = items;
+            listView.ItemTemplate = cell;
         }
 
         private void NavButton_Clicked(object sender, EventArgs e)
