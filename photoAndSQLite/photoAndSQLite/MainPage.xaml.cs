@@ -73,13 +73,17 @@ namespace photoAndSQLite
 
                 ImageSource source = ImageSource.FromStream(() => new MemoryStream(i.imageBytes));
 
+                Label labelImageLength = new Label
+                {
+                    Text = i.imageBytes.Length + " bytes"
+                };
+                layout.Children.Add(labelImageLength);
+
                 Image imagePics = new Image
                 {
                     Source = source
                 };
                 layout.Children.Add(imagePics);
-
-
 
             }
             Content = layout;
