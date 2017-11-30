@@ -56,6 +56,8 @@ namespace photoAndSQLite.NavPage
         }
 
 
+
+
         private void nextButton_Clicked(object sender, EventArgs e)
         {
             var time = DateTime.UtcNow.ToString("HH:mm:ss");
@@ -66,7 +68,8 @@ namespace photoAndSQLite.NavPage
             {
 
                 //byte[] iBytes = GetByteArrayFromStream(sourceFile.GetStream());
-                byte[] iBytes = GetImageStreamAsBytes(sourceFile.GetStream());
+                //byte[] iBytes = GetImageStreamAsBytes(sourceFile.GetStream());
+                byte[] iBytes = image.toByteArray();
                 realm.Add(new Item { TimeString = time, imageBytes = iBytes });
                 DisplayAlert("NavPage2", "length" + iBytes.Length, "OK");
             });
