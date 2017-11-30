@@ -16,21 +16,22 @@ namespace photoAndSQLite.NavPage
 
         public NavPage2(MediaFile file) : this()
         {
-            //image.Source = ImageSource.FromFile(file.Path);
             sourceFile = file;
 
-        }
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            byte[] iBytes = GetByteArrayFromStream(sourceFile.GetStream());
-            DisplayAlert("NavPage2", "length" + iBytes.Length, "OK");
-            image.Source = ImageSource.FromStream(() => new MemoryStream(iBytes));
         }
 
         public NavPage2()
         {
             InitializeComponent();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            //image.Source = ImageSource.FromFile(file.Path);
+            byte[] iBytes = GetByteArrayFromStream(sourceFile.GetStream());
+            DisplayAlert("NavPage2", "length" + iBytes.Length, "OK");
+            image.Source = ImageSource.FromStream(() => new MemoryStream(iBytes));
         }
 
         private void backButton_Clicked(object sender, EventArgs e)
@@ -62,23 +63,21 @@ namespace photoAndSQLite.NavPage
             }
         }
 
-
-
-
         private void nextButton_Clicked(object sender, EventArgs e)
         {
             var time = DateTime.UtcNow.ToString("HH:mm:ss");
 
             // RealmにItemオブジェクトを追加する
             var realm = Realm.GetInstance();
+            byte[] iBytes = GetByteArrayFromStream(sourceFile.GetStream());
+            //byte[] iBytes = GetImageStreamAsBytes(sourceFile.GetStream());
+            //byte[] iBytes = image.toByteArray();
+            DisplayAlert("NavPage2", "length" + iBytes.Length, "OK");
+
             realm.Write(() =>
             {
 
-                byte[] iBytes = GetByteArrayFromStream(sourceFile.GetStream());
-                //byte[] iBytes = GetImageStreamAsBytes(sourceFile.GetStream());
-                //byte[] iBytes = image.toByteArray();
                 realm.Add(new Item { TimeString = time, imageBytes = iBytes });
-                DisplayAlert("NavPage2", "length" + iBytes.Length, "OK");
             });
             // Navigation.PopToRootAsync(true);
             Application.Current.MainPage = new MainPage();
