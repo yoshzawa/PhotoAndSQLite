@@ -61,7 +61,8 @@ namespace photoAndSQLite
                 };
                 layout.Children.Add(labelTime);
 
-                ImageSource source = ImageSource.FromStream(() => new MemoryStream(i.imageBytes));
+                byte[] iBytes = i.imageBytes;
+                ImageSource source = ImageSource.FromStream(() => new MemoryStream(iBytes));
 
                 Image imagePics = new Image
                 {
@@ -73,7 +74,7 @@ namespace photoAndSQLite
 
                 Label labelImageLength = new Label
                 {
-                    Text = i.imageBytes.Length + " bytes"
+                    Text = iBytes.Length + " bytes"
                 };
                 layout.Children.Add(labelImageLength);
 

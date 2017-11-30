@@ -5,8 +5,6 @@ using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-
-
 namespace photoAndSQLite.NavPage
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
