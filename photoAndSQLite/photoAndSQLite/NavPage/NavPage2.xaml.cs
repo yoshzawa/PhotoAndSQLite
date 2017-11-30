@@ -18,12 +18,15 @@ namespace photoAndSQLite.NavPage
         {
             //image.Source = ImageSource.FromFile(file.Path);
             sourceFile = file;
-            byte[] iBytes = GetByteArrayFromStream(sourceFile.GetStream());
-            image.Source = ImageSource.FromStream(() => new MemoryStream(iBytes));
-            DisplayAlert("NavPage2", "length" + iBytes.Length, "OK");
 
         }
-
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            byte[] iBytes = GetByteArrayFromStream(sourceFile.GetStream());
+            DisplayAlert("NavPage2", "length" + iBytes.Length, "OK");
+            image.Source = ImageSource.FromStream(() => new MemoryStream(iBytes));
+        }
 
         public NavPage2()
         {
