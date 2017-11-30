@@ -16,8 +16,16 @@ namespace photoAndSQLite.NavPage
 
         public NavPage2(MediaFile file) : this()
         {
-            image.Source = ImageSource.FromFile(file.Path);
+            //image.Source = ImageSource.FromFile(file.Path);
             sourceFile = file;
+            byte[] iBytes = GetByteArrayFromStream(sourceFile.GetStream());
+            image.Source = ImageSource.FromStream(() => new MemoryStream(iBytes));
+
+
+
+
+
+
         }
 
 
