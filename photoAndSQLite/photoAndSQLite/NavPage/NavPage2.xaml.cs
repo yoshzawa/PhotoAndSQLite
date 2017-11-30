@@ -20,11 +20,7 @@ namespace photoAndSQLite.NavPage
             sourceFile = file;
             byte[] iBytes = GetByteArrayFromStream(sourceFile.GetStream());
             image.Source = ImageSource.FromStream(() => new MemoryStream(iBytes));
-
-
-
-
-
+            DisplayAlert("NavPage2", "length" + iBytes.Length, "OK");
 
         }
 
