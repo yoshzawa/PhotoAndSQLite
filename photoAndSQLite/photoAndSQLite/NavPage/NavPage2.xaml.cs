@@ -75,9 +75,9 @@ namespace photoAndSQLite.NavPage
             realm.Write(() =>
             {
 
-                //byte[] iBytes = GetByteArrayFromStream(sourceFile.GetStream());
+                byte[] iBytes = GetByteArrayFromStream(sourceFile.GetStream());
                 //byte[] iBytes = GetImageStreamAsBytes(sourceFile.GetStream());
-                byte[] iBytes = image.toByteArray();
+                //byte[] iBytes = image.toByteArray();
                 realm.Add(new Item { TimeString = time, imageBytes = iBytes });
                 DisplayAlert("NavPage2", "length" + iBytes.Length, "OK");
             });
