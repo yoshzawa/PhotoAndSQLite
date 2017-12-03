@@ -1,29 +1,50 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="photoAndSQLite.NavPage.NavPage2">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+" >
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="Android" Value="plus.png" />
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ScrollView  Orientation="Vertical"
                                      VerticalOptions="CenterAndExpand"
 >
             <StackLayout>
+                <Image x:Name="image" 
+                       HorizontalOptions="Center"  
+                       HeightRequest="300"/>
+
                 <Label Text="この写真を使用します"
                 HorizontalOptions="CenterAndExpand" />
-                <Grid>
+                
+                <Grid HorizontalOptions="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Text="取り直す"
-          WidthRequest="100" HeightRequest="80" x:Name="backButton"
+                    
+                    <Button Grid.Column="0" 
+                            Text="取り直す"
+                            WidthRequest="100" 
+                            HeightRequest="80" 
+                            x:Name="backButton"
                             Clicked="backButton_Clicked"/>
-                    <Button Grid.Column="1" Text="決定する"
-          WidthRequest="100" HeightRequest="80" x:Name="nextButton" Clicked="nextButton_Clicked"/>
-
+                    <Button Grid.Column="1" 
+                            Text="決定する"
+                            WidthRequest="100" 
+                            HeightRequest="80" 
+                            x:Name="nextButton" 
+                            Clicked="nextButton_Clicked"/>
                 </Grid>
-                <Image x:Name="image" HorizontalOptions="Center"  HeightRequest="300"/>
-
+                
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>
+    
