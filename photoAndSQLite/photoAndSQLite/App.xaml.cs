@@ -5,6 +5,10 @@ using System.Text;
 
 using Xamarin.Forms;
 
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+using Microsoft.AppCenter;
+
 namespace photoAndSQLite
 {
     public partial class App : Application
