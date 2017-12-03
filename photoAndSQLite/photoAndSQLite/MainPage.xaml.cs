@@ -16,9 +16,6 @@ namespace photoAndSQLite
         */
         public MainPage()
         {
-            AppCenter.Start("ios=4767b6a1-63b4-4075-bac1-b760a033ab33;" + "uwp={Your UWP App secret here};" +
-                   "android={Your Android App secret here}",
-                   typeof(Analytics), typeof(Crashes));
 
             InitializeComponent();
         }
@@ -75,7 +72,8 @@ namespace photoAndSQLite
 
                 s.Children.Add(newLabel(i.TimeString));
 
-                ImageSource source = ImageSource.FromStream(() => new MemoryStream(i.imageBytes));
+                byte[] imageBytes = i.imageBytes;
+                ImageSource source = ImageSource.FromStream(() => new MemoryStream(imageBytes));
 
                 Image imagePics = new Image
                 {
