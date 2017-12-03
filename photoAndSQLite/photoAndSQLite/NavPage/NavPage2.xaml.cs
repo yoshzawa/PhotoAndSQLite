@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using Plugin.Media.Abstractions;
+using Realms;
+using System;
+using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
-using photoAndSQLite.NavPage;
-using Realms;
-using System.IO;
-using Plugin.Media.Abstractions;
 
 
 
@@ -24,7 +17,7 @@ namespace photoAndSQLite.NavPage
         public NavPage2(MediaFile file) : this()
         {
             image.Source = ImageSource.FromFile(file.Path);
-                sourceFile = file;
+            sourceFile = file;
         }
 
 
@@ -59,7 +52,8 @@ namespace photoAndSQLite.NavPage
             {
 
                 byte[] iBytes = GetByteArrayFromStream(sourceFile.GetStream());
-                realm.Add(new Item { TimeString = time, ImageBytes = iBytes });
+                realm.Add(new Item { TimeString = time, imageBytes = iBytes, UrlString = sourceFile.Path });
+                DisplayAlert("NavPage2", "length : " + iBytes.Length, "OK");
             });
             // Navigation.PopToRootAsync(true);
             Application.Current.MainPage = new MainPage();
