@@ -1,21 +1,107 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Realms;
+using System;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
-
-using photoAndSQLite.Database;
-using SQLite;
-
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+using Microsoft.AppCenter;
 
 namespace photoAndSQLite
 {
     public partial class MainPage : ContentPage
     {
+        /*
+                ObservableCollection<Data> items = new ObservableCollection<Data>();
+        */
         public MainPage()
         {
+            AppCenter.Start("ios=4767b6a1-63b4-4075-bac1-b760a033ab33;" + "uwp={Your UWP App secret here};" +
+                   "android={Your Android App secret here}",
+                   typeof(Analytics), typeof(Crashes));
+
             InitializeComponent();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            var realm = Realm.GetInstance();
+            var allItems = realm.All<Item>().OrderByDescending((arg) => arg.TimeString);
+
+            var layout = new StackLayout()
+            {
+                HorizontalOptions = LayoutOptions.Center,
+                VerticalOptions = LayoutOptions.Center
+            };
+
+            Button NavButton = new Button()
+            {
+                Text = "NavigationLayout",
+                HorizontalOptions = LayoutOptions.Center
+            };
+
+            NavButton.Clicked += NavButton_Clicked;
+            layout.Children.Add(NavButton);
+
+            ScrollView scr = new ScrollView
+            {
+                Orientation = ScrollOrientation.Vertical,
+                VerticalOptions = LayoutOptions.Center,
+                HorizontalOptions = LayoutOptions.Center
+            };
+            layout.Children.Add(scr);
+            StackLayout sLayout = new StackLayout()
+            {
+                VerticalOptions = LayoutOptions.Center,
+                HorizontalOptions = LayoutOptions.Center
+            };
+            scr.Content = sLayout;
+
+            foreach (var i in allItems)
+            {
+                var s = new StackLayout
+                {
+                    HorizontalOptions = LayoutOptions.Center,
+                    Orientation = StackOrientation.Vertical
+                };
+                //                sLayout.Children.Add(s);
+                Frame f = new Frame()
+                {
+                    HasShadow = true,
+                    OutlineColor = Color.Aqua
+                };
+                f.Content = s;
+
+                s.Children.Add(newLabel(i.TimeString));
+
+                ImageSource source = ImageSource.FromStream(() => new MemoryStream(i.imageBytes));
+
+                Image imagePics = new Image
+                {
+                    Source = source,
+                    WidthRequest = 300
+                };
+                s.Children.Add(imagePics);
+
+                Image imagePics2 = new Image
+                {
+                    Source = ImageSource.FromFile(i.UrlString),
+                    WidthRequest = 300
+                };
+                s.Children.Add(imagePics2);
+
+                s.Children.Add(newLabel(i.imageBytes.Length + " bytes"));
+                sLayout.Children.Add(f);
+            }
+
+            Content = layout;
+
+        }
+
+        private static Label newLabel(string s)
+        {
+            return new Label { Text = s };
         }
 
         private void NavButton_Clicked(object sender, EventArgs e)
@@ -26,56 +112,30 @@ namespace photoAndSQLite
                 BarTextColor = Color.White
             };
         }
-
-        private string createDatabase(string path)
-        {
-            try
-            {
-                var connection = new SQLiteAsyncConnection(path);
-                connection.CreateTableAsync<Person>();
-                return "Database created";
-            }
-            catch (SQLiteException ex)
-            {
-                return ex.Message;
-            }
-        }
-        private string insertUpdateData(Person data, string path)
-        {
-            try
-            {
-                var db = new SQLiteAsyncConnection(path);
-
-                if (db.InsertAsync(data).Result != 0)
+        /*
+                void AddAction(object sender, System.EventArgs e)
                 {
-                    db.UpdateAsync(data);
+                    var time = DateTime.UtcNow.ToString("HH:mm:ss");
+
+                    // RealmにItemオブジェクトを追加する
+                    var realm = Realm.GetInstance();
+                    realm.Write(() =>
+                    {
+                        realm.Add(new Item { TimeString = time });
+                    });
+
+                    // ListViewの先頭にも時刻を表示させる
+                    // items.Insert(0, time);
                 }
+        */
 
-                return "Single data file inserted or updated";
-            }
-            catch (SQLiteException ex)
-            {
-                return ex.Message;
-            }
-        }
-        private int findNumberRecords(string path)
-        {
-            try
-            {
-                var db = new SQLiteAsyncConnection(path);
-                // this counts all records in the database, it can be slow depending on the size of the database
-                var count = db.ExecuteScalarAsync<int>("SELECT Count(*) FROM Person").Result;
-
-                // for a non-parameterless query
-                // var count = db.ExecuteScalar<int>("SELECT Count(*) FROM Person WHERE FirstName="Amy");
-
-                return count;
-            }
-            catch (SQLiteException ex)
-            {
-                return -1;
-            }
-        }
+        /*
+                class Data
+                { 
+                    public String Time { get; set; }
+                    public ImageSource Icon { get; set; }
+                }
+        */
     }
 }
 
