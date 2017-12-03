@@ -5,17 +5,36 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-using photoAndSQLite.Database;
-using SQLite;
+using photoAndSQLite;
+using Realms;
+using System.Collections.ObjectModel;
+using System.IO;
+using Plugin.Media;
+
+
 
 
 namespace photoAndSQLite
 {
     public partial class MainPage : ContentPage
     {
+// ObservableCollection<string> items = new ObservableCollection<string>();
+        ObservableCollection<ImageSource> items = new ObservableCollection<ImageSource>();
+
         public MainPage()
         {
             InitializeComponent();
+            var realm = Realm.GetInstance();
+            var allItems = realm.All<Item>().OrderByDescending((arg) => arg.TimeString);
+            foreach (var i in allItems)
+            {
+                // items.Add(i.TimeString);
+                ImageSource source = ImageSource.FromStream(() => new MemoryStream(i.imageBytes));
+
+                items.Add(source);
+                testImage.Source = source;
+            }
+            listView.ItemsSource = items;
         }
 
         private void NavButton_Clicked(object sender, EventArgs e)
@@ -26,55 +45,19 @@ namespace photoAndSQLite
                 BarTextColor = Color.White
             };
         }
-
-        private string createDatabase(string path)
+        void AddAction(object sender, System.EventArgs e)
         {
-            try
-            {
-                var connection = new SQLiteAsyncConnection(path);
-                connection.CreateTableAsync<Person>();
-                return "Database created";
-            }
-            catch (SQLiteException ex)
-            {
-                return ex.Message;
-            }
-        }
-        private string insertUpdateData(Person data, string path)
-        {
-            try
-            {
-                var db = new SQLiteAsyncConnection(path);
+            var time = DateTime.UtcNow.ToString("HH:mm:ss");
 
-                if (db.InsertAsync(data).Result != 0)
-                {
-                    db.UpdateAsync(data);
-                }
-
-                return "Single data file inserted or updated";
-            }
-            catch (SQLiteException ex)
+            // RealmにItemオブジェクトを追加する
+            var realm = Realm.GetInstance();
+            realm.Write(() =>
             {
-                return ex.Message;
-            }
-        }
-        private int findNumberRecords(string path)
-        {
-            try
-            {
-                var db = new SQLiteAsyncConnection(path);
-                // this counts all records in the database, it can be slow depending on the size of the database
-                var count = db.ExecuteScalarAsync<int>("SELECT Count(*) FROM Person").Result;
+                realm.Add(new Item { TimeString = time });
+            });
 
-                // for a non-parameterless query
-                // var count = db.ExecuteScalar<int>("SELECT Count(*) FROM Person WHERE FirstName="Amy");
-
-                return count;
-            }
-            catch (SQLiteException ex)
-            {
-                return -1;
-            }
+            // ListViewの先頭にも時刻を表示させる
+            items.Insert(0, time);
         }
     }
 }
