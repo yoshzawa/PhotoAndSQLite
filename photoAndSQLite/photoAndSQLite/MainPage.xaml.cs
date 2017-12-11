@@ -27,17 +27,19 @@ namespace photoAndSQLite
             var layout = new StackLayout()
             {
                 HorizontalOptions = LayoutOptions.Center,
-                VerticalOptions = LayoutOptions.Center
+                VerticalOptions = LayoutOptions.Center,
+                Padding = new Thickness(0, 20, 0, 0)
             };
 
-            Button NavButton = new Button()
+            Button navButton = new Button()
             {
-                Text = "NavigationLayout",
-                HorizontalOptions = LayoutOptions.Center
+                Text = " 新規データを追加 ",
+                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                BackgroundColor=Color.Aquamarine
             };
 
-            NavButton.Clicked += NavButton_Clicked;
-            layout.Children.Add(NavButton);
+            navButton.Clicked += NavButton_Clicked;
+            layout.Children.Add(navButton);
 
             ScrollView scr = new ScrollView
             {
@@ -85,7 +87,7 @@ namespace photoAndSQLite
                     Source = ImageSource.FromFile(i.UrlString),
                     WidthRequest = 300
                 };
-                s.Children.Add(imagePics2);
+                //s.Children.Add(imagePics2);
 
                 s.Children.Add(newLabel(i.imageBytes.Length + " bytes"));
                 sLayout.Children.Add(f);
@@ -108,30 +110,6 @@ namespace photoAndSQLite
                 BarTextColor = Color.White
             };
         }
-        /*
-                void AddAction(object sender, System.EventArgs e)
-                {
-                    var time = DateTime.UtcNow.ToString("HH:mm:ss");
 
-                    // RealmにItemオブジェクトを追加する
-                    var realm = Realm.GetInstance();
-                    realm.Write(() =>
-                    {
-                        realm.Add(new Item { TimeString = time });
-                    });
-
-                    // ListViewの先頭にも時刻を表示させる
-                    // items.Insert(0, time);
-                }
-        */
-
-        /*
-                class Data
-                { 
-                    public String Time { get; set; }
-                    public ImageSource Icon { get; set; }
-                }
-        */
     }
 }
-
